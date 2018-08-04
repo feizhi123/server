@@ -33,6 +33,7 @@
                                 <th>金额</th>
                                 <th>相关信息</th>
                                 <th>其他</th>
+                                <th>类别</th>
                                 <!--
                                 <th>更新时间</th>
                                 -->
@@ -48,6 +49,7 @@
                                 <!--
                                 <td>{{i.updateTime?(i.updateTime.split('T')[0]+" "+i.updateTime.split('T')[1].split('.')[0]):""}}</td>
                                 -->
+                                <td>{{i.type}}</td>
                                 <td><a @click="moreDetails(i.type,i._id)">查看详情</a><a @click="del(i.type,i._id)" style="margin-left:10px">删除</a></td>
                             </tr>
                             </tbody>
@@ -104,7 +106,6 @@
                     type:-1,
                     id:-1
                 },
-                title:this.$route.query.name,
                 typeid:parseInt(this.$route.query.type),
                 list: [],
                 totalCount: 0,
@@ -123,7 +124,7 @@
                 if(this.$route.query.title!=''&&typeof this.$route.query.title!='undefined'){
                     this.titleLabel.searchTitle=this.$route.query.title,
                     this.titleLabel.isSearch=true
-                    this.getDetailbyname(this.$route.query.title)
+                    this.getallDetailsbyname(this.$route.query.title)
                 }
                 else{
                     this.getdata();
@@ -140,9 +141,6 @@
                 this.titleLabel.searchTitle='',
                 this.titleLabel.isSearch=false
                 this.search()
-            },
-            getDetail(){
-                this.$router.push({path:"/a_details",query:{type:this.typeid,page:this.queryParams.page,name:this.title}})
             },
             getdata(){
                 var params={
@@ -182,10 +180,10 @@
             pageChange(page) {
                 let vm = this
                 if(typeof vm.$route.query.title!='undefined'){
-                    vm.$router.push({path:"a_details",query:{type:vm.typeid,title:vm.$route.query.title,page:page,name:this.title}})
+                    vm.$router.push({path:"a_details",query:{title:vm.$route.query.title,page:page}})
                 }
                 else{
-                    vm.$router.push({path:"a_details",query:{type:vm.typeid,page:page,name:this.title}})
+                    vm.$router.push({path:"a_details",query:{page:page}})
                 }
                 this.queryParams.page=page
             },
@@ -193,10 +191,10 @@
                 let vm = this;
                 vm.queryParams.page=1
                 if(vm.queryParams.queryStr!=''){
-                    vm.$router.push({path:"a_details",query:{type:vm.typeid,title:vm.queryParams.queryStr,page:vm.queryParams.page,name:this.title}})
+                    vm.$router.push({path:"a_details",query:{title:vm.queryParams.queryStr,page:vm.queryParams.page}})
                 }
                 else
-               vm.$router.push({path:"a_details",query:{type:vm.typeid,page:vm.queryParams.page,name:this.title}})
+               vm.$router.push({path:"a_details",query:{page:vm.queryParams.page}})
                 vm.queryParams.queryStr=''
             },
             getallDetailsbyname(title){

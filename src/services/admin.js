@@ -6,7 +6,7 @@ module.exports = {
         return axios.post(LOGIN, {username:username, password:password})
             .then((resp) => {
                 console.log(resp);
-                return resp.data.data;
+                return resp.data;
             });
     }
 }

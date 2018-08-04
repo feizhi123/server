@@ -69,6 +69,7 @@
                 let vm = this;
                 adminApi.login(vm.username, vm.password).then(data => {
                     if(data.code==0){
+                        debugger
                         localStorage.setItem('info-site-username',vm.username)
                         vm.$router.push({path: 'type'});
                     }
