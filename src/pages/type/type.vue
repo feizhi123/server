@@ -169,7 +169,7 @@
                 detailApi.updateType(this.item).then(data => {
                     if(data.code==0){
                         this.$message.success("信息更新成功")
-                        this.initData();
+                        this.cdnchange();
                     }
                     else{
                         this.$message.error("信息更新失败")

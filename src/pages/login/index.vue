@@ -56,6 +56,8 @@
     import adminApi from '@/services/admin.js'
     export default {
         mounted() {
+            if(localStorage.getItem('info-site-token')!=null&&localStorage.getItem('info-site-token')!='')
+                this.$router.push({path:'type'});
         },
         data() {
             return {
@@ -69,7 +71,6 @@
                 let vm = this;
                 adminApi.login(vm.username, vm.password).then(data => {
                     if(data.code==0){
-                        debugger
                         localStorage.setItem('info-site-username',vm.username)
                         vm.$router.push({path: 'type'});
                     }

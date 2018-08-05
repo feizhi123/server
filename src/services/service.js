@@ -18,7 +18,9 @@ axios.interceptors.request.use(function (config) {
 // Add a response interceptor
 axios.interceptors.response.use(function (resp) {
   if(typeof resp.data.url!="undefined"){
-   window.location=resp.data.url
+    localStorage.removeItem('info-site-token')
+    localStorage.removeItem('info-site-username')
+    window.location=resp.data.url
   }
   if(resp.headers.token){
     console.log(resp.headers.token)
