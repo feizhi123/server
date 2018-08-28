@@ -108,7 +108,7 @@
                 type:this.$route.query.type
             }
             detailApi.getDetailItem(params).then(data => {
-                this.item=data[0]
+                this.item=data.data[0]
                 this.item.tele=this.item.tele?this.item.tele:""
                 this.floatConfig.contentImgUrl=this.item.detail.thumbnails[0];
                 var list=""

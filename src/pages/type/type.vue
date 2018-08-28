@@ -154,7 +154,7 @@
             getType(){
                 var params={page:this.queryParams.page,perpage:this.queryParams.perPage}
                 detailApi.getType(params).then(data => {
-                    this.list=data;
+                    this.list=data.data;
                 })
             },
             editType(i){
@@ -230,7 +230,7 @@
                     page:this.queryParams.page
                 }
                 detailApi.getTypebyName(params).then(data=>{
-                    this.list=data
+                    this.list=data.data
                 })
                 detailApi.getTypeCountbyName(params).then(data=>{
                     this.totalCount=data.length

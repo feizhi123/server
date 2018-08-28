@@ -1,4 +1,4 @@
-const uploadUrl = '/image/upload/';
+const uploadUrl = '/cms/upload/';
 const compressUpload = '/image/compressUpload/';
 
 export default {
@@ -8,10 +8,8 @@ export default {
         return axios.post(uploadUrl, formData, {
             headers: {
                 'Content-type': 'multipart/form-data'
-            },
-            withCredentials: true
+            }
         }).then((resp) => {
-            console.log("file resp", resp)
             return resp.data;
         })
     },

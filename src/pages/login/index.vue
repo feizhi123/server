@@ -69,20 +69,25 @@
         methods: {
             login() {
                 let vm = this;
-                adminApi.login(vm.username, vm.password).then(data => {
-                    if(data.code==0){
-                        localStorage.setItem('info-site-username',vm.username)
-                        vm.$router.push({path: 'type'});
-                    }
-                    else{
-                        if(data.code==100)
-                            vm.$message.error("用户名或密码错误");
-                        else
-                            vm.$message.error("服务器异常");
-                    }
-                }).catch(err => {
-                    console.log(err)
-                })
+                if(vm.username!=''&&vm.password!=''){
+                    adminApi.login(vm.username, vm.password).then(data => {
+                        if(data.code==0){
+                            localStorage.setItem('info-site-username',vm.username)
+                            vm.$router.push({path: 'type'});
+                        }
+                        else{
+                            if(data.code==100)
+                                vm.$message.error("用户名或密码错误");
+                            else
+                                vm.$message.error("服务器异常");
+                        }
+                    }).catch(err => {
+                        console.log(err)
+                    })
+                }
+                else{
+                    vm.$message.error("请输入用户名或密码");
+                }
             }
         },
     };

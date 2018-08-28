@@ -1,5 +1,5 @@
 // const LOGIN = 'console/admin/login'
-const LOGIN = '/login'
+const LOGIN = '/cms/login'
 
 module.exports = {
     login(username, password) {

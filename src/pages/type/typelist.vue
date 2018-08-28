@@ -154,7 +154,7 @@
                     page:this.$route.query.page
                 }
                 detailApi.getDetail(params).then(data => {
-                    this.list=data;
+                    this.list=data.data;
                 })
             },
             doConfirm(){
@@ -210,7 +210,7 @@
                     page:this.queryParams.page
                 }
                 detailApi.getDetailbyName(params).then(data=>{
-                    this.list=data
+                    this.list=data.data
                 })
                 detailApi.getDetailCountbyName(params).then(data=>{
                     this.totalCount=data.length
